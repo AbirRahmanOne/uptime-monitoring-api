@@ -1,0 +1,23 @@
+{
+  "name": "uptime-monitoring-api",
+  "version": "1.0.0",
+  "description": "Using Raw node, uptime-monitoring API. Source : Learn With Sumit.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbirRahmanOne/uptime-monitoring-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbirRahmanOne/uptime-monitoring-api/issues"
+  },
+  "homepage": "https://github.com/AbirRahmanOne/uptime-monitoring-api#readme",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
