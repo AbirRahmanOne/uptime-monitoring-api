@@ -10,7 +10,7 @@
 const http = require('http') ; //creating http server
 const {handleReqRes} = require('./helpers/handleReqRes') ;
 const environment  = require('./helpers/environments');
-
+const data = require('./lib/data') ;
 
 // app objects - module scaffoldings
 const app = {} ;
