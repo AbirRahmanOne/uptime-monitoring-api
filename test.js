@@ -1,15 +1,12 @@
-const person = {} ;
+const data = require('./lib/data') ;
 
-person.abir = {
-    name: 'abir',
-    age: 21,
+
+const sampleData = {
+    name:'India',
+    language:'Hindi',
 }
-
-person.ayan = {
-    name: 'ayan',
-    age: 7,
-}
-
-let result = person['ayan'] ;
-
-console.log(result);
+//testing the file system
+//@TODO del after check!
+data.create('test', 'newFile3', sampleData, (error) =>{
+    console.log(`Error was`, error);
+})
