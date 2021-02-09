@@ -4,7 +4,8 @@
   "description": "Using Raw node, uptime-monitoring API. Source : Learn With Sumit.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app",
+    "start": "NODE_ENV=staging nodemon app",
+    "production": "NODE_ENV=production nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
