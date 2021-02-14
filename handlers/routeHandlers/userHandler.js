@@ -201,7 +201,7 @@ handler._users.delete = (requestProperties, callback) => {
     requestProperties.body.phone.trim().length  === 11 
         ? requestProperties.body.phone : false ;
 
-    //check user Phone number is valid or not
+    //check dhjhdj user Phone number is valid or not
     if(phone){
         //loopup for user
         data.read('users', phone, (err, userData) =>{
