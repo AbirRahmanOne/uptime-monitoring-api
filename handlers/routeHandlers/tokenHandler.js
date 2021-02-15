@@ -80,10 +80,31 @@ handler._token.post = (requestProperties, callback) => {
 };
 
 handler._token.get = (requestProperties, callback) => {
-    callback(200,{
-        msg: 'Token Nai :p '
-    })
+    
+    const token_id = 
+    typeof requestProperties.body.token_id === 'string' && 
+    requestProperties.body.token_id.trim().length  === 24
+        ? requestProperties.body.token_id : false ;
 
+    // check if token id is valid or not
+    if(token_id){
+        // retrive data from db
+        data.read('tokens', token_id, (err, tokenData) => {
+            const data = { ...parseJSON(tokenData) } ;
+            if(!err && data ){
+                callback(200, data)
+            }else{
+                callback(404, {
+                    error: 'Requested token was not found!'
+                });
+            }
+
+        });
+    }else{
+        callback(404, {
+            error: 'Requested token was not found!',
+        });
+    }
 };
 
 handler._token.put = (requestProperties,callback) => {
