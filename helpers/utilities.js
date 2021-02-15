@@ -35,5 +35,24 @@ utilities.hash = (password) => {
     }
 }
 
+utilities.createRandomToken = (strSize)=>{
+    let len = strSize ; 
+    len = typeof strSize === 'number' && strSize > 0 ? strSize : false ;
+
+    if(len){
+        const str = 'abcdefghijklmnopqrstuvwxyz1234567890';
+        let output = '' ;
+
+        for(let i=1 ; i<=len ; i += 1){
+            const randomChar = str.charAt(
+                Math.floor( Math.random() * str.length ) 
+            )
+            output += randomChar ;
+        };
+        return output ;
+    }
+    return false;
+}
+
 //export module
 module.exports = utilities;
