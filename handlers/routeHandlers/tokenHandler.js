@@ -107,12 +107,97 @@ handler._token.get = (requestProperties, callback) => {
     }
 };
 
-handler._token.put = (requestProperties,callback) => {
+// update the token expires time 
+handler._token.put = (requestProperties, callback) => {
+    const token_id = 
+    typeof requestProperties.body.token_id === 'string' && 
+    requestProperties.body.token_id.trim().length  === 24
+        ? requestProperties.body.token_id : false ;
+    
+    const extend  = !! (
+        typeof requestProperties.body.extend === 'boolean' &&
+            requestProperties.body.extend === true 
+    );
+    
+    if(token_id && extend ){
+        data.read('tokens', token_id, (err, tokenData) => {
+            const tokenObject = parseJSON(tokenData);
+            if(tokenObject.expires > Date.now()){
+                tokenObject.expires = Date.now() + (60 * 60 *1000 ) ;
+
+                data.update('tokens', token_id, tokenObject, (err2)=>{
+                    if(!err2){
+                        callback(200, tokenObject) ;
+                    }else{
+                        callback(500, {
+                            error: 'There was a server side error'
+                        });
+                    }
+                });
+            }else{
+                callback(400, {
+                    error: 'Token already expired!'
+                });
+            }
+        });
+
+    }else{
+        callback(400, {
+            error: 'There was a problem in your request',
+        });
+    }
 
 };
 
 handler._token.delete = (requestProperties,callback) => {
+    const token_id = 
+    typeof requestProperties.body.token_id === 'string' && 
+    requestProperties.body.token_id.trim().length  === 24
+        ? requestProperties.body.token_id : false ;
+
+    //check dhjhdj user Phone number is valid or not
+    if(token_id){
+        data.read('tokens',token_id, (err, tokenData)=>{
+            if(!err && tokenData ){
+                data.delete('tokens', token_id, (err2)=>{
+                    if(!err2){
+                        callback(200, {
+                            message: 'Token Deleted Successfully!'
+                        });
+                    }else{
+                        callback(500, {
+                            error: 'There was a server side error!'
+                        });
+                    }
+                });
+            }else{
+                callback(500, {
+                    error: 'There was a server side error!'
+                });
+            }
+        })
+
+    }else{
+        callback(400,{
+            error: 'Invalid user!...'
+        })
+    }
 
 };
+
+
+handler._token.verify = (token_id, phone, callback) => {
+    data.read('tokens', token_id, (err, tokenData) =>{
+        if(!err && tokenData ){
+            if(parseJSON(tokenData).phone === phone && parseJSON(tokenData).expires > Date.now()){
+                callback(true) ;
+            }else{
+                callback(false) ;
+            }
+        }else{
+            callback(false) ;
+        }
+    })
+}
 
 module.exports = handler ;
