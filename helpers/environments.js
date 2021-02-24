@@ -17,6 +17,11 @@ environments.staging = {
     envName: 'staging',
     secretKey: 'jdhjhsah3327673bwdbhdb',
     maxChecksLimit : 10 ,
+    twilio: {
+        fromPhone: '+12029029276',
+        accountSid: 'AC35e7be45d99c71d7cdf5ad7cfdf415f1',
+        authToken: 'c2922e3ae8385355c214b0ecc4b21ccf',
+    },
 
 }
 
@@ -26,6 +31,12 @@ environments.production = {
     envName: 'production',
     secretKey: 'jhsjihar72y73bhdgdygsgdhd',
     maxChecksLimit : 10 ,
+    twilio: {
+        fromPhone: '+12029029276',
+        accountSid: 'AC35e7be45d99c71d7cdf5ad7cfdf415f1',
+        authToken: 'c2922e3ae8385355c214b0ecc4b21ccf',
+    },
+
 
 }
 

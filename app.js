@@ -12,8 +12,18 @@ const {handleReqRes} = require('./helpers/handleReqRes') ;
 const environment  = require('./helpers/environments');
 const data = require('./lib/data') ;
 
+const { sendTwilioSms } = require('./helpers/notifications') ;
+
+
 // app objects - module scaffoldings
 const app = {} ;
+
+/*
+// sms checking
+sendTwilioSms('01521206426', 'Hello Twillo sms checking!', (err)=>{
+    console.log(`Error: `, err);
+})
+*/
 
 
 
