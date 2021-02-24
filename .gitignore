@@ -105,3 +105,6 @@ dist
 
 # Local Test DB
 .data
+
+#Env files
+helpers/environments 
